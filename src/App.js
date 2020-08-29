@@ -11,6 +11,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 import CreateSmartphone from "./Components/CreateSmartphone";
 import EditSmartphone from "./Components/EditSmartphone";
+import SmartphoneList from "./Components/SmartphoneList";
 
 
 
@@ -38,16 +39,16 @@ function App() {
           
 
               <Nav>
-                <Link to={"/EditSmartphone"} className="nav-link">
-                  Edit Smartphone
+                <Link to={"/SmartphoneList"} className="nav-link">
+                  View all Smartphones
                 </Link>
                 
               </Nav>
-              <Nav>
+              {/* <Nav>
                 <Link to={"/student-list"} className="nav-link">
                   View Smartphone
                 </Link>
-            </Nav>
+            </Nav> */}
             </Nav>
 
           </Container>
@@ -60,7 +61,7 @@ function App() {
             <div className="wrapper">
               <Switch>
                 <Route exact path='/CreateSmartphone' component={CreateSmartphone} />
-                <Route path="/EditSmartphone" component={EditSmartphone} />
+                <Route path="/SmartphoneList" component={SmartphoneList} />
                 <Route path="/edit-student/:id" component={EditSmartphone} />
                 <Route path="/student-list" component={EditSmartphone} />
               </Switch>
