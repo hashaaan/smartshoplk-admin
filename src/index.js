@@ -10,7 +10,7 @@ import CreateSmartphone from "./Components/CreateSmartphone"
 ReactDOM.render(
   <BrowserRouter>
    <App />
-   <CreateSmartphone/>
+  
   </BrowserRouter>
    
   ,
