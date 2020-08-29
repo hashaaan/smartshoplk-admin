@@ -13,16 +13,17 @@ import CreateSmartphone from "./Components/CreateSmartphone";
 import EditSmartphone from "./Components/EditSmartphone";
 
 
+
 function App() {
   return (<>
    <Router>
     <div className="App">
-      <header className="App-header">
-        <Navbar bg="dark" variant="dark">
+      <header className="App-header"  >
+        <Navbar bg={"dark"} variant="dark">
           <Container>
 
             <Navbar.Brand>
-              <Link to="/CreateSmartphone" className="nav-link">
+              <Link to="/" className="nav-link">
                 SmartPhone.lk Dashboard
               </Link>
             </Navbar.Brand>
