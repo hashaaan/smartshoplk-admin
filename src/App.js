@@ -11,22 +11,24 @@ import "bootstrap/dist/css/bootstrap.css";
 
 import CreateSmartphone from "./Components/CreateSmartphone";
 import EditSmartphone from "./Components/EditSmartphone";
+import SmartphoneList from "./Components/SmartphoneList";
 
 
 
 function App() {
   return (<>
    <Router>
-    <div className="App">
-      <header className="App-header"  >
-        <Navbar bg={"dark"} variant="dark">
-          <Container>
+    {/* <div className="App">
+      <header className="App-header"  > */}
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+          
 
             <Navbar.Brand>
               <Link to="/" className="nav-link">
                 SmartPhone.lk Dashboard
               </Link>
             </Navbar.Brand>
+           {/* < a class="navbar-brand" href="/">SmartPhone.lk Dashboard</a> */}
 
             <Nav className="justify-content-end">
               <Nav>
@@ -38,21 +40,21 @@ function App() {
           
 
               <Nav>
-                <Link to={"/EditSmartphone"} className="nav-link">
-                  Edit Smartphone
+                <Link to={"/SmartphoneList"} className="nav-link">
+                  View all Smartphones
                 </Link>
                 
               </Nav>
-              <Nav>
+              {/* <Nav>
                 <Link to={"/student-list"} className="nav-link">
                   View Smartphone
                 </Link>
-            </Nav>
+            </Nav> */}
             </Nav>
 
-          </Container>
-        </Navbar>
-      </header>
+          
+        </nav>
+    
 
       <Container>
         <Row>
@@ -60,20 +62,16 @@ function App() {
             <div className="wrapper">
               <Switch>
                 <Route exact path='/CreateSmartphone' component={CreateSmartphone} />
-                <Route path="/EditSmartphone" component={EditSmartphone} />
-                <Route path="/edit-student/:id" component={EditSmartphone} />
-                <Route path="/student-list" component={EditSmartphone} />
+                <Route path="/SmartphoneList" component={SmartphoneList} />
+                {/* <Route path="/edit-student/:id" component={EditSmartphone} />
+                <Route path="/student-list" component={EditSmartphone} /> */}
               </Switch>
             </div>
           </Col>
         </Row>
       </Container>
-    </div>
+    
   </Router>
-
-
-
-
 
 </>
   );
