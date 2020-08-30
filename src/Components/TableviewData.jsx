@@ -7,11 +7,13 @@ export default class StudentTableRow extends Component {
 
     constructor(props) {
         super(props);
+
+        
+        
         this.deleteMobile = this.deleteMobile.bind(this);
     }
 
-
-   async deleteMobile(mobileID) {
+  async deleteMobile(mobileID) {
       await  axios.delete(`http://localhost:5000/api/admin/${mobileID}` )
             .then((res) => {
                 console.log('Student successfully deleted!')
@@ -19,18 +21,19 @@ export default class StudentTableRow extends Component {
                 console.log(error)
             })
 
-        // let newMobile= this.props.obj.allMobile.filter(
+        // let newMobile= this.props.state.allMobile.filter(
         //     (mobile) =>mobile.id !== mobileID
         //   );
         // await  axios.delete(`http://localhost:5000/api/${mobileID}`)
         //   this.setState({allMobile:newMobile})
 
     }
-
+        
 
     render() {
         return (
-            <tr>
+            <tr key={this.props.obj.id}>
+                  <td>{this.props.obj.id}</td>
                 <td>{this.props.obj.name}</td>
                 <td>{this.props.obj.brand}</td>
                 <td>{this.props.obj.modelNo}</td>
@@ -46,8 +49,9 @@ export default class StudentTableRow extends Component {
                 <td>
                     <Link className="edit-link" to={"/EditSmartphone/" + this.props.obj._id}>
                         Edit
-                    </Link> {" "}
-                    <Button size="sm" variant="danger" onSubmit={this.deleteMobile}>Delete</Button>
+                    </Link> {" "}</td>
+                    <td>
+                    <Button size="sm" variant="danger" onClick={this.deleteMobile}>Delete</Button>
                 </td>
             </tr>
         );

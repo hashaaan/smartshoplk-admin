@@ -25,7 +25,8 @@ import axios from "axios"
     
         // Setting up state
         this.state = {
-          id:"",
+
+          id:'',
           name: '',
           brand: '',
           modelNo: '',
@@ -55,37 +56,39 @@ import axios from "axios"
     
 
 
-      onSubmit(e) {
-        e.preventDefault()
-    
-        const newMobile = {
-            name: this.state.name,
-            brand:this.state.brand,
-            modelNo: this.state.modelNo,
-            storage: this.state.storage,
-            color: this.state.color,
-            feature: this.state.feature,
-            description: this.state.description,
-            rating:this.state.rating,
-            price: this.state.price,
-            currency:this.state.currency,
-            imageURL: this.state.imageURL
-        };
-        axios.post('http://localhost:5000/api/admin', newMobile)
-          .then(res => console.log(res.data));
-    
-        this.setState({name: '',
-        brand: '',
-        modelNo: '',
-        storage: '',
-        color: '',
-        feature: '',
-        description: '',
-        rating: '',
-        price: '',
-        currency:'',
-        imageURL: '' })
-      }
+    onSubmit(e) {
+      e.preventDefault()
+  
+      const newMobile = {
+        
+          name: this.state.name,
+          brand:this.state.brand,
+          modelNo: this.state.modelNo,
+          storage: this.state.storage,
+          color: this.state.color,
+          feature: this.state.feature,
+          description: this.state.description,
+          rating:this.state.rating,
+          price: this.state.price,
+          currency:this.state.currency,
+          imageURL: this.state.imageURL
+      };
+      axios.post('http://localhost:5000/api/admin', newMobile)
+        .then(res => console.log(res.data));
+  
+      this.setState({name: '',
+      brand: '',
+      modelNo: '',
+      storage: '',
+      color: '',
+      feature: '',
+      description: '',
+      rating: '',
+      price: '',
+      currency:'',
+      imageURL: '' })
+    }
+
 
 
 

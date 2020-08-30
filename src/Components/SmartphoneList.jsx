@@ -2,19 +2,23 @@ import React, { Component } from "react";
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
 import TableviewData from './TableviewData';
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 
-export default class StudentList extends Component {
-
+ class SmartphoneList extends Component {
+  
   constructor(props) {
     super(props)
-    this.state = {
-      allMobile: []
-    };
-  }
+    this.state={
+      allMobile:[]
+    
+    }
 
+  }
+  
  async componentDidMount() {
-    // axios.get('http://localhost:500/api/admin')
+    // await axios.get("http://localhost:500/api/admin")
     //   .then(res => {
     //     this.setState({
     //       allMobile: res.data
@@ -33,7 +37,7 @@ export default class StudentList extends Component {
         name: mobile.name,
         brand: mobile.brand,
         modelNo: mobile.modelNo,
-        storage:mobile.Storage,
+        storage:mobile.storage,
         color:mobile.color,
         feature:mobile.feature,
         description:mobile.description,
@@ -45,9 +49,29 @@ export default class StudentList extends Component {
       };
     });
     this.setState({ allMobile: newMobile })
+
+
+//delete
+
+
+
   
 
   }
+
+  async deleteMobile(mobileID) {
+    await  axios.delete(`http://localhost:5000/api/admin/${mobileID}` )
+          .then((res) => {
+              console.log('Student successfully deleted!')
+          }).catch((error) => {
+              console.log(error)
+          })
+
+     // await  axios.delete(`http://localhost:5000/api/admin/${mobileID}`)
+       // this.setState({allMobile:newMobile})
+
+  }
+ 
 
   DataTable() {
     return this.state.allMobile.map((res, i) => {
@@ -61,6 +85,7 @@ export default class StudentList extends Component {
       <Table striped bordered hover>
         <thead>
           <tr>
+          <th>ID</th>
             <th>Name</th>
             <th>Brand</th>
             <th>Model No</th>
@@ -75,10 +100,18 @@ export default class StudentList extends Component {
             <th>Image</th>
           </tr>
         </thead>
+        
         <tbody>
           {this.DataTable()}
+
+         
+
         </tbody>
+        
       </Table>
+      
     </div>);
   }
 }
+
+export default SmartphoneList;
