@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
 
-export default class StudentTableRow extends Component {
+export default class TableviewData extends Component {
 
     constructor(props) {
         super(props);
@@ -12,14 +12,17 @@ export default class StudentTableRow extends Component {
         
         this.deleteMobile = this.deleteMobile.bind(this);
     }
+    // state={
+    //     id:this.props.mobile.id
+    // }
 
-  async deleteMobile(mobileID) {
-      await  axios.delete(`http://localhost:5000/api/admin/${mobileID}` )
-            .then((res) => {
-                console.log('Student successfully deleted!')
-            }).catch((error) => {
-                console.log(error)
-            })
+   deleteMobile(id) {
+    axios.delete(`http://localhost:8000/api/admin/${id}`)
+    .then((res) => {
+        console.log('Student successfully deleted!')
+    }).catch((error) => {
+        console.log(error)
+    })
 
         // let newMobile= this.props.state.allMobile.filter(
         //     (mobile) =>mobile.id !== mobileID
@@ -32,22 +35,25 @@ export default class StudentTableRow extends Component {
 
     render() {
         return (
-            <tr key={this.props.obj.id}>
-                  <td>{this.props.obj.id}</td>
-                <td>{this.props.obj.name}</td>
-                <td>{this.props.obj.brand}</td>
-                <td>{this.props.obj.modelNo}</td>
-                <td>{this.props.obj.storage}</td>
-                <td>{this.props.obj.color}</td>
-                <td>{this.props.obj.feature}</td>
-                <td>{this.props.obj.description}</td>
-                <td>{this.props.obj.rating}</td>
-                <td>{this.props.obj.price}</td>
-                <td>{this.props.obj.currency}</td>
-                <td>{this.props.obj.imageURL}</td>
-               
+
+
+            
+            <tr key={this.props.mobile.id}>
+                  <td>{this.props.mobile.id}</td>
+                <td>{this.props.mobile.name}</td>
+                <td>{this.props.mobile.brand}</td>
+                <td>{this.props.mobile.modelNo}</td>
+                <td>{this.props.mobile.storage}</td>
+                <td>{this.props.mobile.color}</td>
+                <td>{this.props.mobile.feature}</td>
+                <td>{this.props.mobile.description}</td>
+                <td>{this.props.mobile.rating}</td>
+                <td>{this.props.mobile.price}</td>
+                <td>{this.props.mobile.currency}</td>
+                <td>{this.props.mobile.imageURL}</td>
+             
                 <td>
-                    <Link className="edit-link" to={"/EditSmartphone/" + this.props.obj._id}>
+                    <Link className="edit-link" to={"/EditSmartphone/" + this.props.mobile._id}>
                         Edit
                     </Link> {" "}</td>
                     <td>

@@ -26,7 +26,7 @@ import axios from "axios"
         // Setting up state
         this.state = {
 
-          id:'',
+         
           name: '',
           brand: '',
           modelNo: '',
@@ -37,7 +37,7 @@ import axios from "axios"
           rating: '',
           price: '',
           currency:'',
-          imageURL: ''
+          imgUrl: ''
         }
       }
 
@@ -47,12 +47,11 @@ import axios from "axios"
     onChangeStorage(e){this.setState({storage: e.target.value})}
     onChangeColor(e){this.setState({color: e.target.value})}
     onChangeFeature(e){this.setState({ feature: e.target.value})}
-    
     onChangeDescription(e){this.setState({ description: e.target.value})}
     onChangePrice(e){this.setState({   price: e.target.value})}  
     onChangeRating(e){this.setState({rating: e.target.value})}
     onChangeCurrency(e){this.setState({currency: e.target.value})}
-    onChangeImage(e){this.setState({ imageURL: e.target.value})}  
+    onChangeImage(e){this.setState({ imgUrl: e.target.value})}  
     
 
 
@@ -71,12 +70,14 @@ import axios from "axios"
           rating:this.state.rating,
           price: this.state.price,
           currency:this.state.currency,
-          imageURL: this.state.imageURL
+          imgUrl: this.state.imgUrl
       };
-      axios.post('http://localhost:5000/api/admin', newMobile)
+      axios.post('http://localhost:8000/api/admin/mobile/', newMobile)
         .then(res => console.log(res.data));
   
-      this.setState({name: '',
+      this.setState({
+        
+        name: '',
       brand: '',
       modelNo: '',
       storage: '',
@@ -86,7 +87,7 @@ import axios from "axios"
       rating: '',
       price: '',
       currency:'',
-      imageURL: '' })
+      imgUrl: '' })
     }
 
 
@@ -149,7 +150,7 @@ import axios from "axios"
 
           <Form.Group controlId="ImageURL">
             <Form.Label>Image URL</Form.Label>
-            <Form.Control type="text" value={this.state.imageURL} onChange={this.onChangeImage}/>
+            <Form.Control type="text" value={this.state.imgUrl} onChange={this.onChangeImage}/>
           </Form.Group>
   
          
