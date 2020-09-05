@@ -63,8 +63,8 @@ function App() {
               <Switch>
                 <Route exact path='/CreateSmartphone' component={CreateSmartphone} />
                 <Route path="/SmartphoneList" component={SmartphoneList} />
-                {/* <Route path="/edit-student/:id" component={EditSmartphone} />
-                <Route path="/student-list" component={EditSmartphone} /> */}
+                 <Route path="/EditSmartphone/:id" component={EditSmartphone} />
+                <Route path="/student-list" component={EditSmartphone} /> 
               </Switch>
             </div>
           </Col>

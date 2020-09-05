@@ -7,15 +7,15 @@ import Button from 'react-bootstrap/Button';
 
 
  class SmartphoneList extends Component {
-  
   constructor(props) {
     super(props)
-    this.state={
-      allMobile:[]
-    
-    }
+    this.state = {
+      allMobile: []
+    };
 
+    this.deleteMobile = this.deleteMobile.bind(this)
   }
+  
   
  async componentDidMount() {
     // await axios.get("http://localhost:500/api/admin")
@@ -28,7 +28,7 @@ import Button from 'react-bootstrap/Button';
     //     console.log(error);
     //   })
 
-    let { data } = await axios.get("http://localhost:5000/api/admin")
+    let { data } = await axios.get("http://localhost:8000/api/admin/mobile/")
     console.log(data)
 
     let newMobile = data.map(mobile => {
@@ -44,7 +44,7 @@ import Button from 'react-bootstrap/Button';
         rating:mobile.rating,
         price:mobile.price,
         currency:mobile.currency,
-        imageURL:mobile.imageURL
+        imgUrl:mobile.imgUrl
         
       };
     });
@@ -59,25 +59,33 @@ import Button from 'react-bootstrap/Button';
 
   }
 
-  async deleteMobile(mobileID) {
-    await  axios.delete(`http://localhost:5000/api/admin/${mobileID}` )
-          .then((res) => {
-              console.log('Student successfully deleted!')
-          }).catch((error) => {
-              console.log(error)
-          })
+  // async deleteMobile(mobileID) {
+  //   // await  axios.delete(`http://localhost:8000/api/admin/${mobileID}` )
+  //   //       .then((res) => {
+  //   //           console.log('Student successfully deleted!')
+  //   //       }).catch((error) => {
+  //   //           console.log(error)
+  //   //       })
 
-     // await  axios.delete(`http://localhost:5000/api/admin/${mobileID}`)
-       // this.setState({allMobile:newMobile})
 
+  //    // await  axios.delete(`http://localhost:5000/api/admin/${mobileID}`)
+  //      // this.setState({allMobile:newMobile})
+
+  // }
+
+  async deleteMobile(mobileId){
+    await  axios.delete(`http://localhost:8000/api/admin/mobile/${mobileId}`)
+    .then(res => {})
+    .catch(err => { console.log(err) })
+  //  this.setState({allMobile:newMobile})
   }
  
 
-  DataTable() {
-    return this.state.allMobile.map((res, i) => {
-      return <TableviewData obj={res} key={i} />;
-    });
-  }
+  // DataTable() {
+  //   return this.state.allMobile.map((mobile, id) => {
+  //     return <TableviewData mobile={mobile} key={id} />;
+  //   });
+  // }
 
 
   render() {
@@ -85,7 +93,7 @@ import Button from 'react-bootstrap/Button';
       <Table striped bordered hover>
         <thead>
           <tr>
-          <th>ID</th>
+          
             <th>Name</th>
             <th>Brand</th>
             <th>Model No</th>
@@ -97,14 +105,38 @@ import Button from 'react-bootstrap/Button';
             <th>Rating</th>
             <th>Price</th>
             <th>Currency</th>
-            <th>Image</th>
+            
+        
           </tr>
         </thead>
         
         <tbody>
-          {this.DataTable()}
+         {this.state.allMobile.map(mobile =>
+                  <tr key={mobile.id}  >
 
-         
+                    <td>{mobile.name}</td>
+                    <td>{mobile.brand}</td>
+                    <td>{mobile.modelNo}</td>
+                    <td>{mobile.storage}</td>
+                    <td>{mobile.color}</td>
+                    <td>{mobile.feature}</td>
+                    <td>{mobile.description}</td>
+                    <td>{mobile.rating}</td>
+                    <td>{mobile.price}</td>
+                    <td>{mobile.currency}</td>
+                    <td>
+                    <Link className="edit-link" to={"/EditSmartphone/"+mobile.id }>
+                        Edit
+                    </Link> {" "}</td>
+                    <td>
+                    <button className="danger" size="sm" variant="danger" onClick={() => this.deleteMobile(mobile.id)}>Delete</button>
+                </td>
+                   
+                   
+                   
+
+                  </tr>
+                )}
 
         </tbody>
         
