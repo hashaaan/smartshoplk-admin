@@ -12,10 +12,7 @@ export default class TableviewData extends Component {
         
         this.deleteMobile = this.deleteMobile.bind(this);
     }
-    // state={
-    //     id:this.props.mobile.id
-    // }
-
+ 
    deleteMobile(id) {
     axios.delete(`http://localhost:8000/api/admin/${id}`)
     .then((res) => {
@@ -24,11 +21,6 @@ export default class TableviewData extends Component {
         console.log(error)
     })
 
-        // let newMobile= this.props.state.allMobile.filter(
-        //     (mobile) =>mobile.id !== mobileID
-        //   );
-        // await  axios.delete(`http://localhost:5000/api/${mobileID}`)
-        //   this.setState({allMobile:newMobile})
 
     }
         
