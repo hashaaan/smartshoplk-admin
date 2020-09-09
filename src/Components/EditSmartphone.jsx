@@ -35,18 +35,15 @@ import axios from 'axios';
     rating: '',
     price: '',
     currency:'',
-    imageUrl: ''
+    imgUrl: ''
   }
 }
 
 
-
-//cc
-
 async componentDidMount() {
 
 
-  axios.get('http://localhost:8000/api/admin/mobile/' + this.props.match.params.id)
+ await axios.get('http://localhost:8000/api/admin/smartphones/' + this.props.match.params.id)
   .then(res => {
     this.setState({
       name: res.data.name,
@@ -55,11 +52,11 @@ async componentDidMount() {
     storage: res.data.storage,
     color: res.data.color,
     features: res.data.features,
-    description: res.data.feature,
+    description: res.data.description,
     rating: res.data.rating,
     price: res.data.price,
     currency:res.data.currency,
-    imageUrl: res.data.imageUrl
+    imgUrl: res.data.imgUrl
     });
   }).catch((error) => {
     console.log(error);
@@ -80,7 +77,7 @@ onChangeName(e) { this.setState({name: e.target.value})}
     onChangePrice(e){this.setState({   price: e.target.value})}  
     onChangeRating(e){this.setState({rating: e.target.value})}
     onChangeCurrency(e){this.setState({currency: e.target.value})}
-    onChangeImage(e){this.setState({ imageUrl: e.target.value})}
+    onChangeImage(e){this.setState({ imgUrl: e.target.value})}
 
 
     onSubmit(e) {
@@ -97,10 +94,10 @@ onChangeName(e) { this.setState({name: e.target.value})}
     rating: this.state.rating,
     price: this.state.price,
     currency:this.state.currency,
-    imageUrl: this.state.imageUrl,
+    imgUrl: this.state.imgUrl,
       };
   
-      axios.put('http://localhost:8000/api/admin/mobile/' + this.props.match.params.id, mobile)
+      axios.put('http://localhost:8000/api/admin/smartphones/' + this.props.match.params.id, mobile)
         .then((res) => {
           console.log(res.data)
           console.log('Student successfully updated')
@@ -116,7 +113,7 @@ onChangeName(e) { this.setState({name: e.target.value})}
 
   render() {
     return (
-        <div class="form-wrapper">
+        <div className="form-wrapper">
         <Form onSubmit={this.onSubmit}>
           <Form.Group controlId="Name">
             <Form.Label>Name</Form.Label>
@@ -145,12 +142,12 @@ onChangeName(e) { this.setState({name: e.target.value})}
 
           <Form.Group controlId="Features">
             <Form.Label>Features</Form.Label>
-            <Form.Control type="text" value={this.state.features} onChange={this.onChangeFeature}/>
+            <Form.Control as="textarea" rows="3" value={this.state.features} onChange={this.onChangeFeature}/>
           </Form.Group>
 
           <Form.Group controlId="Description">
             <Form.Label>Description</Form.Label>
-            <Form.Control type="text" value={this.state.description} onChange={this.onChangeDescription}/>
+            <Form.Control as="textarea" rows="10" value={this.state.description} onChange={this.onChangeDescription}/>
           </Form.Group>
 
           <Form.Group controlId="Rating">
@@ -170,7 +167,7 @@ onChangeName(e) { this.setState({name: e.target.value})}
 
           <Form.Group controlId="ImageURL">
             <Form.Label>Image URL</Form.Label>
-            <Form.Control type="text" value={this.state.imageURL} onChange={this.onChangeImage}/>
+            <Form.Control as="textarea" rows="3" value={this.state.imgUrl} onChange={this.onChangeImage}/>
           </Form.Group>
   
          
